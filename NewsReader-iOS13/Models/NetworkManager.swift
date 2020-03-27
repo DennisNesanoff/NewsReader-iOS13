@@ -23,7 +23,9 @@ class NetworkManager: ObservableObject {
                     let decoder = JSONDecoder()
                     do {
                         let results = try decoder.decode(Result.self, from: data)
-                        self.posts = results.hits
+                        DispatchQueue.main.async {
+                            self.posts = results.hits
+                        }
                     } catch {
                         print(error)
                     }
